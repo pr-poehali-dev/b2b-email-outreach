@@ -1,331 +1,252 @@
+import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
+import { Badge } from "@/components/ui/badge";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
+const stats = [
+  {
+    title: "Активные кампании",
+    value: "12",
+    change: "+3",
+    trend: "up",
+    icon: "Mail",
+  },
+  {
+    title: "Отправлено писем",
+    value: "2,847",
+    change: "+412",
+    trend: "up",
+    icon: "Send",
+  },
+  {
+    title: "Open Rate",
+    value: "42.3%",
+    change: "+2.1%",
+    trend: "up",
+    icon: "Eye",
+  },
+  {
+    title: "Response Rate",
+    value: "8.7%",
+    change: "-0.4%",
+    trend: "down",
+    icon: "MessageSquare",
+  },
+];
+
+const recentCampaigns = [
+  {
+    id: 1,
+    name: "SaaS Founders Outreach Q1",
+    status: "active",
+    sent: 342,
+    opened: 156,
+    replied: 28,
+    lastActivity: "2 часа назад",
+  },
+  {
+    id: 2,
+    name: "Marketing Directors Follow-up",
+    status: "paused",
+    sent: 189,
+    opened: 87,
+    replied: 12,
+    lastActivity: "5 часов назад",
+  },
+  {
+    id: 3,
+    name: "Tech Leads - Product Demo",
+    status: "active",
+    sent: 521,
+    opened: 234,
+    replied: 41,
+    lastActivity: "1 день назад",
+  },
+  {
+    id: 4,
+    name: "Cold Leads Reactivation",
+    status: "scheduled",
+    sent: 0,
+    opened: 0,
+    replied: 0,
+    lastActivity: "Запуск через 3 дня",
+  },
+];
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <header className="bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <h2 className="text-xl font-bold text-slate-900">ColdReach</h2>
-            </div>
-            <nav className="hidden md:flex space-x-8">
-              <a href="#services" className="text-slate-600 hover:text-blue-600 transition-colors">Услуги</a>
-              <a href="#pricing" className="text-slate-600 hover:text-blue-600 transition-colors">Тарифы</a>
-            </nav>
-            <Button>Начать</Button>
-          </div>
-        </div>
-      </header>
-
-      {/* Hero Section */}
-      <section className="pt-16 pb-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6">
-              Холодные продажи<br />
-              <span className="text-blue-600">через email</span>
-            </h1>
-            <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-              Автоматизируем ваш B2B аутрич. Находим клиентов, создаем персонализированные кампании и увеличиваем конверсию в 5 раз.
+    <DashboardLayout>
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold">Дашборд</h1>
+            <p className="text-muted-foreground mt-1">
+              Обзор ваших email кампаний
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-                Получить консультацию
-              </Button>
-              <Button variant="outline" size="lg">
-                Посмотреть кейсы
-              </Button>
-            </div>
-            
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div>
-                <div className="text-3xl font-bold text-blue-600">250+</div>
-                <div className="text-slate-600">Успешных кампаний</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-blue-600">85%</div>
-                <div className="text-slate-600">Открываемость</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-blue-600">15%</div>
-                <div className="text-slate-600">Средний отклик</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-blue-600">3.2x</div>
-                <div className="text-slate-600">Рост продаж</div>
-              </div>
-            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section id="services" className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Наши услуги</h2>
-            <p className="text-xl text-slate-600">Комплексный подход к холодному email маркетингу</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="bg-white border-slate-200 hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <Icon name="Mail" className="text-blue-600" size={24} />
-                </div>
-                <CardTitle>Email кампании</CardTitle>
-                <CardDescription>
-                  Создаем персонализированные email последовательности с высокой конверсией
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="bg-white border-slate-200 hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <Icon name="Users" className="text-blue-600" size={24} />
-                </div>
-                <CardTitle>Поиск лидов</CardTitle>
-                <CardDescription>
-                  Находим и верифицируем контакты вашей целевой аудитории в LinkedIn и базах
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="bg-white border-slate-200 hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <Icon name="BarChart3" className="text-blue-600" size={24} />
-                </div>
-                <CardTitle>Аналитика</CardTitle>
-                <CardDescription>
-                  Отслеживаем результаты, A/B тестируем и оптимизируем кампании в реальном времени
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="bg-white border-slate-200 hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <Icon name="Settings" className="text-blue-600" size={24} />
-                </div>
-                <CardTitle>Автоматизация</CardTitle>
-                <CardDescription>
-                  Настраиваем email sequences, follow-ups и интеграции с CRM системами
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="bg-white border-slate-200 hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <Icon name="Target" className="text-blue-600" size={24} />
-                </div>
-                <CardTitle>Стратегия</CardTitle>
-                <CardDescription>
-                  Разрабатываем персональную стратегию аутрича под ваши цели и нишу
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="bg-white border-slate-200 hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <Icon name="Shield" className="text-blue-600" size={24} />
-                </div>
-                <CardTitle>Deliverability</CardTitle>
-                <CardDescription>
-                  Гарантируем попадание в inbox через warming и technical setup
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section id="pricing" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Тарифы</h2>
-            <p className="text-xl text-slate-600">Выберите подходящий план для вашего бизнеса</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Starter Plan */}
-            <Card className="bg-white border-slate-200">
-              <CardHeader>
-                <CardTitle className="text-2xl">Starter</CardTitle>
-                <CardDescription>Для небольших компаний</CardDescription>
-                <div className="text-4xl font-bold text-slate-900 mt-4">
-                  $299<span className="text-lg text-slate-600">/мес</span>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center">
-                    <Icon name="Check" className="text-green-500 mr-3" size={16} />
-                    <span>До 1,000 контактов</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Icon name="Check" className="text-green-500 mr-3" size={16} />
-                    <span>2 email кампании</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Icon name="Check" className="text-green-500 mr-3" size={16} />
-                    <span>Базовая аналитика</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Icon name="Check" className="text-green-500 mr-3" size={16} />
-                    <span>Email поддержка</span>
-                  </li>
-                </ul>
-                <Button className="w-full" variant="outline">Выбрать план</Button>
-              </CardContent>
-            </Card>
-
-            {/* Pro Plan */}
-            <Card className="bg-blue-600 text-white border-blue-600 relative">
-              <Badge className="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black">
-                Популярный
-              </Badge>
-              <CardHeader>
-                <CardTitle className="text-2xl text-white">Pro</CardTitle>
-                <CardDescription className="text-blue-100">Для растущих компаний</CardDescription>
-                <div className="text-4xl font-bold text-white mt-4">
-                  $599<span className="text-lg text-blue-100">/мес</span>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center">
-                    <Icon name="Check" className="text-green-400 mr-3" size={16} />
-                    <span>До 5,000 контактов</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Icon name="Check" className="text-green-400 mr-3" size={16} />
-                    <span>Неограниченные кампании</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Icon name="Check" className="text-green-400 mr-3" size={16} />
-                    <span>Продвинутая аналитика</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Icon name="Check" className="text-green-400 mr-3" size={16} />
-                    <span>A/B тестирование</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Icon name="Check" className="text-green-400 mr-3" size={16} />
-                    <span>Приоритетная поддержка</span>
-                  </li>
-                </ul>
-                <Button className="w-full bg-white text-blue-600 hover:bg-slate-100">Выбрать план</Button>
-              </CardContent>
-            </Card>
-
-            {/* Enterprise Plan */}
-            <Card className="bg-white border-slate-200">
-              <CardHeader>
-                <CardTitle className="text-2xl">Enterprise</CardTitle>
-                <CardDescription>Для крупных компаний</CardDescription>
-                <div className="text-4xl font-bold text-slate-900 mt-4">
-                  $1,199<span className="text-lg text-slate-600">/мес</span>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center">
-                    <Icon name="Check" className="text-green-500 mr-3" size={16} />
-                    <span>Неограниченные контакты</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Icon name="Check" className="text-green-500 mr-3" size={16} />
-                    <span>Персональный менеджер</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Icon name="Check" className="text-green-500 mr-3" size={16} />
-                    <span>Custom интеграции</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Icon name="Check" className="text-green-500 mr-3" size={16} />
-                    <span>Белый label</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Icon name="Check" className="text-green-500 mr-3" size={16} />
-                    <span>24/7 поддержка</span>
-                  </li>
-                </ul>
-                <Button className="w-full" variant="outline">Связаться с нами</Button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-blue-600">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-white mb-4">
-            Готовы увеличить продажи?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8">
-            Получите бесплатную консультацию и персональную стратегию для вашего бизнеса
-          </p>
-          <Button size="lg" className="bg-white text-blue-600 hover:bg-slate-100">
-            Заказать консультацию
+          <Button>
+            <Icon name="Plus" className="mr-2 h-4 w-4" />
+            Новая кампания
           </Button>
         </div>
-      </section>
 
-      {/* Footer */}
-      <footer className="bg-slate-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4">ColdReach</h3>
-              <p className="text-slate-400">
-                Профессиональный B2B аутрич для роста вашего бизнеса
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Услуги</h4>
-              <ul className="space-y-2 text-slate-400">
-                <li>Email кампании</li>
-                <li>Поиск лидов</li>
-                <li>Автоматизация</li>
-                <li>Аналитика</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Компания</h4>
-              <ul className="space-y-2 text-slate-400">
-                <li>О нас</li>
-                <li>Кейсы</li>
-                <li>Блог</li>
-                <li>Карьера</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Контакты</h4>
-              <ul className="space-y-2 text-slate-400">
-                <li>hello@coldreach.com</li>
-                <li>+7 (495) 123-45-67</li>
-                <li>Москва, Россия</li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-slate-700 mt-12 pt-8 text-center text-slate-400">
-            <p>&copy; 2024 ColdReach. Все права защищены.</p>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {stats.map((stat) => (
+            <Card key={stat.title}>
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
+                  {stat.title}
+                </CardTitle>
+                <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Icon name={stat.icon} className="h-4 w-4 text-primary" />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{stat.value}</div>
+                <p className={`text-xs mt-1 ${stat.trend === 'up' ? 'text-green-600' : 'text-red-600'}`}>
+                  {stat.change} за неделю
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-3">
+          <Card className="lg:col-span-2">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <CardTitle>Последние кампании</CardTitle>
+                <Button variant="ghost" size="sm">
+                  Все кампании
+                  <Icon name="ArrowRight" className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Название</TableHead>
+                    <TableHead>Статус</TableHead>
+                    <TableHead className="text-right">Отправлено</TableHead>
+                    <TableHead className="text-right">Открыто</TableHead>
+                    <TableHead className="text-right">Ответов</TableHead>
+                    <TableHead>Активность</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {recentCampaigns.map((campaign) => (
+                    <TableRow key={campaign.id}>
+                      <TableCell className="font-medium">{campaign.name}</TableCell>
+                      <TableCell>
+                        <Badge
+                          variant={
+                            campaign.status === "active"
+                              ? "default"
+                              : campaign.status === "paused"
+                              ? "secondary"
+                              : "outline"
+                          }
+                        >
+                          {campaign.status === "active" && "Активна"}
+                          {campaign.status === "paused" && "На паузе"}
+                          {campaign.status === "scheduled" && "Запланирована"}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-right">{campaign.sent}</TableCell>
+                      <TableCell className="text-right">{campaign.opened}</TableCell>
+                      <TableCell className="text-right">{campaign.replied}</TableCell>
+                      <TableCell className="text-muted-foreground text-sm">
+                        {campaign.lastActivity}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Быстрые действия</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <Button className="w-full justify-start" variant="outline">
+                  <Icon name="Plus" className="mr-2 h-4 w-4" />
+                  Создать кампанию
+                </Button>
+                <Button className="w-full justify-start" variant="outline">
+                  <Icon name="Upload" className="mr-2 h-4 w-4" />
+                  Импорт контактов
+                </Button>
+                <Button className="w-full justify-start" variant="outline">
+                  <Icon name="FileText" className="mr-2 h-4 w-4" />
+                  Новый шаблон
+                </Button>
+                <Button className="w-full justify-start" variant="outline">
+                  <Icon name="BarChart3" className="mr-2 h-4 w-4" />
+                  Отчет по аналитике
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Последняя активность</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex gap-3">
+                  <div className="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                    <Icon name="Mail" className="h-4 w-4 text-green-600" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium">Новый ответ</p>
+                    <p className="text-xs text-muted-foreground truncate">
+                      john@startup.com ответил на кампанию
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">5 мин назад</p>
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                    <Icon name="Eye" className="h-4 w-4 text-blue-600" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium">Письмо открыто</p>
+                    <p className="text-xs text-muted-foreground truncate">
+                      sarah@company.io открыла письмо
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">12 мин назад</p>
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  <div className="h-8 w-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
+                    <Icon name="Send" className="h-4 w-4 text-purple-600" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium">Отправлено писем: 24</p>
+                    <p className="text-xs text-muted-foreground truncate">
+                      Кампания "SaaS Founders Q1"
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">1 час назад</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
-      </footer>
-    </div>
+      </div>
+    </DashboardLayout>
   );
 };
 
